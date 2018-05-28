@@ -1,0 +1,30 @@
+{
+  "name": "cwtiny",
+  "version": "1.0.0",
+  "description": "A URL shortener designed for the needs of the CW operator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishmal/cwtiny.git"
+  },
+  "keywords": [
+    "ham",
+    "amateur",
+    "radio",
+    "cw",
+    "morse",
+    "shortener"
+  ],
+  "author": "Bob Jamison, KS5D",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ishmal/cwtiny/issues"
+  },
+  "homepage": "https://github.com/ishmal/cwtiny#readme",
+  "devDependencies": {
+    "restify": "^7.2.0"
+  }
+}
