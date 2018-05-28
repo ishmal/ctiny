@@ -1,10 +1,9 @@
 
-const text = `
-<!DOCTYPE html>
+const text = `<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>CW Tiny</title>
+<meta charset="UTF-8">
+<title>CW Tiny</title>
 </head>
 
 <body>
@@ -13,8 +12,8 @@ const text = `
 
 <form action="/tiny" method="POST">
 <h4>URL to shorten</h4>
-<input class="urlfield" type="text" name="url/>
-<input type="submit" value="Create" />
+<input class="urlfield" type="text" name="url"></input>
+<input type="submit" value="Create" ></input>
 </form>
 
 </body>
@@ -24,7 +23,12 @@ const text = `
 
 
 function index(req, res, next) {
-	res.send(text);
+	res.writeHead(200, {
+		'Content-Length': text.length,
+		'Content-Type': 'text/html'
+	  });
+	res.write(text);
+	res.end();
 	next();
 }
 
