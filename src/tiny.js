@@ -1,3 +1,6 @@
+
+const index = require("./index");
+
 const digits = [
 	"a", "b", "c", "d", "e",
 	"f", "g", "h", "i", "j",
@@ -84,7 +87,7 @@ class Tiny {
 	post(req, res) {
 		let url = req.body.url;
 		let shortUrl = this.create(url);
-		let text = template(url, shortUrl);
+		let text = index.indexTemplate({ url: url, shortUrl: shortUrl });
 		res.type("html");
 		res.send(text);	
 	}
