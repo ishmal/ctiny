@@ -22,14 +22,9 @@ const text = `<!DOCTYPE html>
 `;
 
 
-function index(req, res, next) {
-	res.writeHead(200, {
-		'Content-Length': text.length,
-		'Content-Type': 'text/html'
-	  });
-	res.write(text);
-	res.end();
-	next();
+function index(req, res) {
+	res.type("html");
+	res.send(text);
 }
 
 module.exports = index;

@@ -1,21 +1,19 @@
-const restify = require('restify');
+const express = require("express");
+const bodyParser = require("body-parser");
 const tiny = require("./tiny");
 const index = require("./index");
 
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}
+const app = express();
 
-const server = restify.createServer();
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 /**
  * Routes
  */
-server.get("/", index);
-server.get('/hello/:name', respond);
-server.get('/tiny/:url', tiny);
+app.get("/", index);
+app.get("/tiny/:url", tiny.get);
+app.post("/tiny", urlencodedParser, tiny.post);
 
-server.listen(8080, function() {
-  console.log('%s listening at %s', server.name, server.url);
+app.listen(8080, () => {
+  console.log("listening on 8080");
 });
