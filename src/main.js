@@ -7,6 +7,7 @@ const reload = require("express-reload");
 
 const tiny = require("./tiny");
 const index = require("./index");
+const styles = require("./styles");
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(reload(filePath));
 /**
  * Routes
  */
-app.get("/", index);
+app.get("/", index.index);
+app.get("/styles.css", styles);
 app.get("/tiny/:url", tiny.get);
 app.post("/tiny", urlencodedParser, tiny.post);
 
