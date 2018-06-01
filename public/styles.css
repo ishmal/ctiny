@@ -1,6 +1,17 @@
+.tiny-title {
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 16px;
+}
 
+.tiny-subtitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
 
-const css = `
+.tiny-label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
 
 .btn {
     background: #3498db;
@@ -14,7 +25,7 @@ const css = `
     border-radius: 28px;
     font-family: Arial;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     padding: 5px 10px 5px 10px;
     text-decoration: none;
   }
@@ -47,13 +58,3 @@ const css = `
 fieldset {
     border: 0;
 }
-
-`;
-
-
-function styles(req, res) {
-	res.type("text/css");
-	res.send(css);
-}
-
-module.exports = styles;

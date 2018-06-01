@@ -1,6 +1,4 @@
 
-const index = require("./index");
-
 const digits = [
 	"a", "b", "c", "d", "e",
 	"f", "g", "h", "i", "j",
@@ -72,24 +70,26 @@ class Tiny {
 	fetch(shortUrl) {
 		shortUrl = shortUrl.toLowerCase();
 		let table = this.table;
-		let res = table[shortUrl];
+		let res = table[shortUrl] || { url: null };
 		let url = res.url;
 		this.gc();
 		return url;
 	}
 
 	get(req, res) {
+		debugger;
 		let shortUrl = req.params.url;
 		let fullUrl = this.fetch(shortUrl);
-		res.redirect(fullUrl);	
+		res.type("text/plain");
+		res.send(fullUrl);	
 	}
 
 	post(req, res) {
+		debugger;
 		let url = req.body.url;
 		let shortUrl = this.create(url);
-		let text = index.indexTemplate({ url: url, shortUrl: shortUrl });
-		res.type("html");
-		res.send(text);	
+		res.type("text/plain");
+		res.send(shortUrl);	
 	}
 
 
