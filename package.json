@@ -26,6 +26,7 @@
   "homepage": "https://github.com/ishmal/cwtiny#readme",
   "devDependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "express-reload": "^1.1.0"
   }
 }
