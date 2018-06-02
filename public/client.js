@@ -38,12 +38,13 @@
 			let encodeField = document.getElementById("encodefield");
 			let decodeField = document.getElementById("decodefield");
 			let encoded = decodeField.value;
+			let tinyWindow = window.open("", "ctiny");
 			fetch("/tiny/" + encoded)
 			.then(res => {
 				return res.text();
 			})
 			.then(url => {
-				window.open(url, "cwtiny");
+				tinyWindow.location = url;
 			});
 
 		}
