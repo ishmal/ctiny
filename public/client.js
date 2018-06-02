@@ -16,15 +16,18 @@
 			let decodeField = document.getElementById("decodefield");
 			let plaintext = encodeField.value;
 			let opts = {
-				url: "/tiny",
 				method: 'POST',
 				body: JSON.stringify({ url: plaintext }),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			};
-			fetch(opts).then(res => {
-				decodeField.value = res;
+			fetch("/tiny", opts)
+			.then(res => {
+				return res.text();
+			})
+			.then(url => {
+				decodeField.value = url;
 			})
 			.catch(err => {
 				console.log(err);
@@ -36,8 +39,11 @@
 			let decodeField = document.getElementById("decodefield");
 			let encoded = decodeField.value;
 			fetch("/tiny/" + encoded)
-				.then(res => {
-					window.open(res, "cwtiny");
-				});
+			.then(res => {
+				return res.text();
+			})
+			.then(url => {
+				window.open(url, "cwtiny");
+			});
 
 		}
