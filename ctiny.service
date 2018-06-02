@@ -1,0 +1,16 @@
+[Unit]
+Description=CWTiny
+
+[Service]
+ExecStart=/home/bob/cwtiny/proxy.js
+Restart=always
+User=nobody
+# Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
+Group=nogroup  
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/bob/cwtiny
+
+[Install]
+WantedBy=multi-user.target
+

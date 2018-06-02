@@ -1,13 +1,14 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const tiny = require("./src/tiny");
+const Tiny = require("./src/tiny");
 const ServeStatic = require("./src/serve-static");
 
 const app = express();
 
 const jsonParser = bodyParser.json();
 const fileServer = new ServeStatic(__dirname + "/public");
+const tiny = new Tiny();
 
 /**
  * Routes
