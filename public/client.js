@@ -43,10 +43,12 @@
 			let encodeField = document.getElementById("encodefield");
 			let decodeField = document.getElementById("decodefield");
 			let plaintext = encodeField.value;
+			/*
 			let res = validateUrl(plaintext);
 			if (!res) {
 				return;
 			}
+			*/
 			decodeField.value = "processing";
 			let opts = {
 				method: 'POST',
@@ -87,3 +89,22 @@
 			});
 
 		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			let encodeField = document.getElementById("encodefield");
+			let decodeField = document.getElementById("decodefield");
+			encodeField.addEventListener("keyup", (evt) => {
+				if (evt.keyCode === 13) {
+					encodeUrl();
+					evt.preventDefault();
+				}
+			});
+			decodeField.addEventListener("keyup", (evt) => {
+				if (evt.keyCode === 13) {
+					decodeUrl();
+					evt.preventDefault();
+				}
+			});
+		});
+
+

@@ -18,6 +18,18 @@
 	font-size: 14px;
 }
 
+.tiny-encodefield {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bolder'
+}
+
+.tiny-decodefield {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bolder'
+}
+
 .tiny-error {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -65,6 +77,7 @@
     display: flex;
     flex-direction: row;
 }
+
 
 fieldset {
     border: 0;
