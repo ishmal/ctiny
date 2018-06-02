@@ -15,6 +15,7 @@
 			let encodeField = document.getElementById("encodefield");
 			let decodeField = document.getElementById("decodefield");
 			let plaintext = encodeField.value;
+			decodeField.value = "processing";
 			let opts = {
 				method: 'POST',
 				body: JSON.stringify({ url: plaintext }),
@@ -38,12 +39,14 @@
 			let encodeField = document.getElementById("encodefield");
 			let decodeField = document.getElementById("decodefield");
 			let encoded = decodeField.value;
+			encodeField.value = "processing";
 			let tinyWindow = window.open("", "ctiny");
 			fetch("/tiny/" + encoded)
 			.then(res => {
 				return res.text();
 			})
 			.then(url => {
+				encodeField.value = url;
 				tinyWindow.location = url;
 			});
 
