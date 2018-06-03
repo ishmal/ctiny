@@ -5,7 +5,8 @@
 	<title>CW Tiny</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	    crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 
 	<script type="text/javascript" src="/client.js"></script>
@@ -14,40 +15,40 @@
 <body>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-				<li class="breadcrumb-item active" aria-current="page">Home</li>
-				<li class="breadcrumb-item"><a href="/about.html">About</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Home</li>
+			<li class="breadcrumb-item">
+				<a href="/about.html">About</a>
+			</li>
 		</ol>
 	</nav>
 
 	<div class="container">
 
-	<h3 class="h3 tiny-title">CW TINY</h3>
-	<h5 class="lead">A URL shortener for Morse code and CW.</h5>
+		<h3 class="h3 tiny-title">CW TINY</h3>
+		<h5 class="lead">A URL shortener for Morse code and CW.</h5>
 
-	<div id="alerts">
-	</div>
-	  
-	<div class="tiny-input">
-		<h4 class="tiny-label">Encode: URL to shorten</h4>
-		<div class="input-group mb-3">
-			<input type="url" id="encodeField" class="form-control" size="60"
-				aria-label="URL to shorten" aria-describedby="basic-addon2">
-			<div class="input-group-append">
-				<button class="btn btn-secondary" type="button" id="encodeBtn">Encode</button>
+		<div id="alerts">
+		</div>
+
+		<div class="tiny-input">
+			<h4 class="tiny-label">Encode: URL to shorten</h4>
+			<div class="input-group mb-3">
+				<input type="url" id="encodeField" class="form-control" size="60" aria-label="URL to shorten" aria-describedby="basic-addon2">
+				<div class="input-group-append">
+					<button class="btn btn-secondary" type="button" id="encodeBtn">Encode</button>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="tiny-output">
-		<h4 class="tiny-label">Decode: URL to display</h4>
-		<div class="input-group mb-3">
-				<input type="url" id="decodeField" class="form-control" size="60"
-					aria-label="URL to display" aria-describedby="basic-addon2">
+		<div class="tiny-output">
+			<h4 class="tiny-label">Decode: URL to display</h4>
+			<div class="input-group mb-3">
+				<input type="url" id="decodeField" class="form-control" size="60" aria-label="URL to display" aria-describedby="basic-addon2">
 				<div class="input-group-append">
 					<button class="btn btn-secondary" type="button" id="decodeBtn">Decode</button>
 				</div>
+			</div>
 		</div>
-	</div>
 
 	</div>
 

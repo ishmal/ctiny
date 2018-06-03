@@ -32,10 +32,12 @@ class Tiny {
 		this.post = (req, res) => {
 			return this.handlePost(req, res);
 		};
+		this.gcStart();
 	}
 
 	gc() {
 		let table = this.table;
+		//done this way because table is sparse.
 		let keys = Object.keys(table);
 		let now = Date.now().time;
 		for (let key of keys) {
@@ -43,6 +45,19 @@ class Tiny {
 			if (rec.timeout < now) {
 				delete table[key];
 			}
+		}
+	}
+
+	gcStart() {
+		this.gcInterval = setInterval(() => {
+			this.gc();
+		}, 180000); //3 minutes
+	}
+
+	gcStop() {
+		if (this.gcInterval) {
+			clearInterval(this.gcInterval);
+			this.gcInterval = null;
 		}
 	}
 
@@ -74,6 +89,7 @@ class Tiny {
 
 	generateHash() {
 		let table = this.table;
+		//search ordinally in spite of being sparse
 		for (let i = 0; i < 10000000 ; i++) {
 			if (!table[i]) {
 				return i;
@@ -95,7 +111,6 @@ class Tiny {
 		} else {
 			//what?
 		}
-		this.gc();
 	}
 
 	fetch(shortUrl) {
@@ -103,7 +118,6 @@ class Tiny {
 		let index = this.decode(shortUrl);
 		let res = table[index] || { url: null };
 		let url = res.url;
-		this.gc();
 		return url;
 	}
 
