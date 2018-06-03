@@ -5,49 +5,57 @@
 	<title>CW Tiny</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	    crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 
 <body>
-	<h3 class="tiny-title">
-		<a href="/index.html">&lt; Back</a>
-	</h3>
-	<h5 class="tiny-subtitle">A URL shortener for CW enthusiasts.</h5>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="/index.html">Home</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">About</li>
+		</ol>
+	</nav>
 
-	<div class="tiny-about">
-		<p>
-			During the course of a ham radio Morse conversation, the participants
-			might wish to exchange URL's to web sites. Sending
-			"http://" is painful on CW, so an alternate way seems like a good idea.
-		</p>
+	<div class="container">
 
-		<p>
-			Here is the good idea: shorten the URL to something that is easy to send.
-			Only letters, case insensitive, and as few as possible.
-			Make the short URL's short-lived, so that the nicer shorter
-			codes become available again. And since CW is manual, keep
-			the user's necessary actions to a minimum.
-		</p>
+		<h3 class="h3 tiny-title">CW TINY</h3>
+		<h5 class="lead">A URL shortener for Morse code and CW.</h5>
 
-		<p>
-			To make a CTiny URL, paste the real URL into the upper field
-			and press Encode. The Tiny code will appear in the other field.
-			Yes. it is insanely short. Send that to your friend.
-		</p>
+		<div class="tiny-about">
+			<p>
+				During the course of a ham radio Morse conversation, the participants might wish to exchange URL's to web sites. Sending
+				"http://" is painful on CW, so an alternate way seems like a good idea.
+			</p>
 
-		<p>
-			When you receive a CTiny code from the other guy, just
-			type it into the lower field and hit the Decode button. The URL's page
-			will be loaded into another tab.
-		</p>
+			<p>
+				Here is the good idea: shorten the URL to something that is easy to send. Only letters, case insensitive, and as few as possible.
+				Make the short URL's short-lived, so that the nicer shorter codes become available again. And since CW is manual, keep
+				the user's necessary actions to a minimum.
+			</p>
 
-		<p>
-			And that is all. I hope that this is useful for you.
-		</p>
+			<p>
+				To make a CTiny URL, paste the real URL into the upper field and press Encode. The Tiny code will appear in the other field.
+				Yes. it is insanely short. Send that to your friend.
+			</p>
+
+			<p>
+				When you receive a CTiny code from the other guy, just type it into the lower field and hit the Decode button. The URL's
+				page will be loaded into another tab.
+			</p>
+
+			<p>
+				And that is all. This is all for fun. I hope that this is useful for you.
+			</p>
+
+		</div>
+
+		<a href="https://github.com/ishmal/cwtiny">Project on Github</a>
 
 	</div>
-
-	<a href="https://github.com/ishmal/cwtiny">Project on Github</a>
 
 </body>
 
