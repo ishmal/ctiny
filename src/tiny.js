@@ -17,8 +17,15 @@ const DIGITS_LEN = DIGITS.length;
 //make a char --> value lookup table
 const DIGITS_REV = DIGITS.reduce((t, v, idx) => { t[v] = idx; return t; }, {});
 
+const TIMEOUT = 3 * 60 * 60 * 1000; // 3 hours
+const GC_PERIOD = 3 * 60 * 1000; // 3 minutes
+//testing
+//const TIMEOUT = 30 * 1000; // 30 seconds
+//const GC_PERIOD = 5 * 1000; // 5 seconds
 
-const TIMEOUT = 3 * 60 * 60 * 1000;
+function getTime() {
+	return new Date().getTime();
+}
 
 /**
  * Simple service that creates and manages "tiny" URLs
@@ -39,19 +46,23 @@ class Tiny {
 		let table = this.table;
 		//done this way because table is sparse.
 		let keys = Object.keys(table);
-		let now = Date.now().time;
+		let now = getTime();
+		let nrDeleted = 0;
 		for (let key of keys) {
 			let rec = table[key];
+			//console.log("timeout: " + rec.timeout + "  now: " + now);
 			if (rec.timeout < now) {
 				delete table[key];
+				nrDeleted++;
 			}
 		}
+		console.log("Keys freed: " + nrDeleted);
 	}
 
 	gcStart() {
 		this.gcInterval = setInterval(() => {
 			this.gc();
-		}, 180000); //3 minutes
+		}, GC_PERIOD);
 	}
 
 	gcStop() {
@@ -103,7 +114,7 @@ class Tiny {
 		let index = this.generateHash();
 		if (index !== null) {
 			table[index] = {
-				timeout: Date.now() + TIMEOUT,
+				timeout: getTime() + TIMEOUT,
 				url: url
 			};
 			let encoded = this.encode(index);
