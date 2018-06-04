@@ -40,6 +40,8 @@ class Tiny {
 			return this.handlePost(req, res);
 		};
 		this.gcStart();
+		this.lastUrl = "";
+		this.lastShort = null;
 	}
 
 	gc() {
@@ -98,7 +100,7 @@ class Tiny {
 		return val;
 	}
 
-	generateHash() {
+	findKey() {
 		let table = this.table;
 		//search ordinally in spite of being sparse
 		for (let i = 0; i < 10000000 ; i++) {
@@ -110,14 +112,43 @@ class Tiny {
 	}
 
 	create(url) {
+		//check cache first
+		if (url === this.lastUrl) {
+			return this.lastShort;
+		}
 		let table = this.table;
-		let index = this.generateHash();
+
+		/**
+		 * First see if the url is already shortened.  If
+		 * so, simply update it and return the existing short code.
+		 */
+		let keys = Object.keys(table);
+		for (let key of keys) {
+			let rec = table[key];
+			if (rec.url === url) {
+				rec.timeout = getTime() + TIMEOUT;
+				let encoded = this.encode(key);
+				//update cache
+				this.lastUrl = url;
+				this.lastShort = encoded;
+				return encoded;
+			}
+		}
+
+		/**
+		 * Otherwise find the lowest key in the table, and make
+		 * a new record.
+		 */
+		let index = this.findKey();
 		if (index !== null) {
+			let encoded = this.encode(index);
 			table[index] = {
 				timeout: getTime() + TIMEOUT,
 				url: url
 			};
-			let encoded = this.encode(index);
+			//update cache
+			this.lastUrl = url;
+			this.lastShort = encoded;
 			return encoded;
 		} else {
 			//what?
