@@ -16,6 +16,7 @@ class TinyClient {
 		this.decodeField = document.getElementById("decodeField");
 		this.encodeBtn = document.getElementById("encodeBtn");
 		this.decodeBtn = document.getElementById("decodeBtn");
+		this.decodeAndOpenBtn = document.getElementById("decodeAndOpenBtn");
 		this.alertsAnchor = document.getElementById("alerts");
 
 		this.encodeBtn.addEventListener("click", () => {
@@ -23,6 +24,9 @@ class TinyClient {
 		});
 		this.decodeBtn.addEventListener("click", () => {
 			this.decodeUrl();
+		});
+		this.decodeAndOpenBtn.addEventListener("click", () => {
+			this.decodeAndOpenUrl();
 		});
 		this.encodeField.addEventListener("keyup", (evt) => {
 			if (evt.keyCode === 13) {
@@ -120,6 +124,23 @@ class TinyClient {
 	}
 
 	decodeUrl() {
+		let encoded = this.decodeField.value;
+		let res = this.validateShortUrl(encoded);
+		if (!res) {
+			return;
+		}
+		this.encodeField.value = "processing";
+		fetch("/tiny/" + encoded)
+		.then(res => {
+			return res.text();
+		})
+		.then(url => {
+			this.encodeField.value = url;
+		});
+
+	}
+
+	decodeAndOpenUrl() {
 		let encoded = this.decodeField.value;
 		let res = this.validateShortUrl(encoded);
 		if (!res) {
