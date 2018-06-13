@@ -85,13 +85,15 @@ class TinyClient {
 		return res;
 	}
 	
-	copyToClipBoard(elem) {
-		document.createRange().selectNode(elem);
-		let result = document.execCommand("copy");
-		if (result) {
-			this.alert("copied to clipboard");
-		} else {
-			this.error("not copied to clipboard");
+	async copyToClipBoard(data) {
+		if (navigator.clipboard) {
+			try {
+				await navigator.clipboard.writeText(data);
+				this.alert("code copied to clipboard");
+			  } catch (err) {
+				this.error("failed tpo copy code to clipboard");
+				console.log("Failed to copy '" + data + "' to clipboard: " + err);
+			  }	
 		}
 	}
 
@@ -117,6 +119,7 @@ class TinyClient {
 		})
 		.then(url => {
 			this.decodeField.value = url;
+			this.copyToClipBoard(url);
 		})
 		.catch(err => {
 			console.log(err);
@@ -137,7 +140,6 @@ class TinyClient {
 		.then(url => {
 			this.encodeField.value = url;
 		});
-
 	}
 
 	decodeAndOpenUrl() {

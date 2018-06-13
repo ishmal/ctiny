@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Map encoding</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	    crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/styles.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-ID0_f4fnx93J5tF4Yj8DEvkcXIJ16WQ" type="text/javascript"></script>
+
+	<style>
+		#map {
+			width: 800px;
+			height: 800px;
+		}
+	</style>
+
+	<script>
+		class TinyMap {
+			constructor(elem) {
+				this.elem = elem;
+				this.latLng = new google.maps.LatLng(-34.397, 150.644);
+				this.startup();
+			}
+
+			startMap() {
+				let opts = {
+						zoom: 9,
+						center: this.latLng,
+						mapTypeId: "roadmap"
+					};
+					this.map = new google.maps.Map(this.elem, opts);
+			}
+
+
+			startup() {
+				function success() {
+				}
+				navigator.geolocation.getCurrentPosition((pos) => {
+					let coords = pos.coords;
+					this.latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
+					this.startMap();
+				}, () => this.startMap());
+			;
+			}
+		}
+
+
+		document.addEventListener("DOMContentLoaded", () => {
+			let elem = document.getElementById("map");
+			let map = new TinyMap(elem);
+		});
+	</script>
+
+</head>
+
+<body>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="/index.html">Home</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">About</li>
+		</ol>
+	</nav>
+
+	<div class="container">
+
+		<h3 class="h3 tiny-title">CW TINY</h3>
+		<h5 class="lead">A URL shortener for Morse code and CW.</h5>
+
+		<div id="map"></div>
+
+		<div class="tiny-input">
+				<h4 class="tiny-label">Encode: URL to shorten</h4>
+				<div class="input-group mb-3">
+					<input type="url" id="encodedField" class="form-control" size="60" aria-label="URL to shorten" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="button" id="encodeBtn">Encode</button>
+					</div>
+				</div>
+		</div>
+	
+	
+		<p>
+				Browser might ask for your location.  We just want to
+				center the map over you.  Nothing sneaky here!
+		</p>
+	
+	
+
+	</div>
+
+</body>
+
+</html>
