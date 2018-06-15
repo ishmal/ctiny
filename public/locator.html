@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Map encoding</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-ID0_f4fnx93J5tF4Yj8DEvkcXIJ16WQ" type="text/javascript"></script>
+    <script src="/locatormap.js" type="text/javascript"></script>
+
+    <style>
+        .locatormap {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .locatormap img {
+            box-shadow: none;
+        }
+
+        .locatorlabel {
+            color: green;
+            text-shadow: white 0.1em 0.1em 0.3em;
+        }
+
+        .locatorinput {
+            width: 300px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let map = new LocatorMap("locatormap", 700, 700);
+        });
+    </script>
+
+</head>
+
+<body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Locator Map</li>
+        </ol>
+    </nav>
+
+    <div class="container">
+
+        <h3 class="h3 tiny-title">CW TINY</h3>
+        <h5 class="lead">A URL shortener for Morse code and CW.</h5>
+
+        <div id="locatormap" class="locatormap"></div>
+
+        <p>
+            This has nothing to do with URL shortening. It is just a nice utility to have around. Type the locator or coordinates
+            to see the location.  Or click on the map to get the locator information.
+        </p>
+
+        <p>
+            Browser might ask for your location. We just want to center the map over you. Nothing sneaky here!
+        </p>
+
+
+
+    </div>
+
+</body>
+
+</html>
