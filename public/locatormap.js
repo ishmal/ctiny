@@ -30,7 +30,7 @@ class LocatorMap {
 
         /**
          * This is the main setup function.  Here we create a GoogleMap and nail it
-         * to the map_canvas tag.  We also create a rectangle for showing the
+         * to the anchorname tag.  We also create a rectangle for showing the
          * locator grid square, that we can move around later.
          */
 
