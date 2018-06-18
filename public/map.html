@@ -18,39 +18,8 @@
 	</style>
 
 	<script>
-		class TinyMap {
-			constructor(elem) {
-				this.elem = elem;
-				this.latLng = new google.maps.LatLng(-34.397, 150.644);
-				this.startup();
-			}
-
-			startMap() {
-				let opts = {
-						zoom: 9,
-						center: this.latLng,
-						mapTypeId: "roadmap"
-					};
-					this.map = new google.maps.Map(this.elem, opts);
-			}
-
-
-			startup() {
-				function success() {
-				}
-				navigator.geolocation.getCurrentPosition((pos) => {
-					let coords = pos.coords;
-					this.latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
-					this.startMap();
-				}, () => this.startMap());
-			;
-			}
-		}
-
-
 		document.addEventListener("DOMContentLoaded", () => {
-			let elem = document.getElementById("map");
-			let map = new TinyMap(elem);
+			let map = new TinyMap("map");
 		});
 	</script>
 

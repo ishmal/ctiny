@@ -3,7 +3,7 @@
  *
  *  MIT License
  *
- *  Copyright (c) 2013, Bob Jamison
+ *  Copyright (c) 2018, Bob Jamison
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this
  *  software and associated documentation files (the "Software"), to deal in the Software
@@ -26,7 +26,10 @@ class LocatorMap {
 
     constructor(anchorname, w, h) {
 
-        let anchor = document.getElementById(anchorname);
+		let anchor = document.getElementById(anchorname);
+		if (!anchor) {
+			throw new Error("LocatorMap anchor '" + anchorname + "' not found");
+		}
 
         /**
          * This is the main setup function.  Here we create a GoogleMap and nail it
