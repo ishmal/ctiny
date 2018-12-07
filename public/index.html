@@ -6,10 +6,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	    crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/styles.css">
+	 crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./styles.css">
 
-	<script type="text/javascript" src="/client.js"></script>
+	<script type="text/javascript" src="./client.js"></script>
 </head>
 
 <body>
@@ -24,33 +24,40 @@
 
 	<div class="container">
 
-		<h3 class="h3 tiny-title">CTINY</h3>
-		<h5 class="lead">A URL shortener for radio communications.</h5>
+		<div class="tiny-header">
+			<h3 class="h3 tiny-title">CTINY</h3>
+			<h5 class="lead">A URL shortener for radio communications.</h5>
+		</div>
 
+		<form class="tiny-form">
 
-		<div class="tiny-input">
-			<h4 class="tiny-label">Encode: URL to shorten</h4>
-			<div class="input-group mb-3">
-				<input type="url" id="encodeField" class="form-control" size="60" aria-label="URL to shorten" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-secondary" type="button" id="encodeBtn">Encode</button>
+			<div class="tiny-input form-group">
+				<span class="tiny-label">Encode</span>
+				<div class="input-group mb-3">
+					<input type="url" id="encodeField" class="form-control" size="60" placeholder="URL to shorten" aria-label="URL to shorten"
+					 aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="button" id="encodeBtn">Encode</button>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="tiny-output">
-			<h4 class="tiny-label">Decode: URL to display</h4>
-			<div class="input-group mb-3">
-				<input type="url" id="decodeField" class="form-control" size="60" aria-label="URL to display" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-secondary" type="button" id="decodeBtn">Decode</button>
-					<button class="btn btn-secondary" type="button" id="decodeAndOpenBtn">Open</button>
+			<div class="tiny-output form-group">
+				<span class="tiny-label">Decode</span>
+				<div class="input-group mb-3">
+					<input type="url" id="decodeField" class="form-control" size="60" placeholder="URL to display" aria-label="URL to display"
+					 aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="button" id="decodeBtn">Decode</button>
+						<button class="btn btn-secondary" type="button" id="decodeAndOpenBtn">Open</button>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div id="alerts">
-		</div>
+			<div id="alerts">
+			</div>
+
+		</form>
 
 	</div>
 
