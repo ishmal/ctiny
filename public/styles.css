@@ -1,3 +1,12 @@
+.tiny-header {
+	display: table;
+	border:  solid #dddddd 1px ;
+	border-radius: 5px;
+	border-bottom: 20px;
+	padding: 15px;
+	box-shadow: 5px 10px #dddddd;
+}
+
 .tiny-title {
 	font-family: Impact, Charcoal, sans-serif;
 	font-size: 16px;
@@ -8,9 +17,15 @@
 	font-size: 14px;
 }
 
+.tiny-form {
+	padding: 20px;
+}
+
 .tiny-label {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 4px;
 }
 
 .tiny-about {
@@ -27,7 +42,7 @@
 .tiny-decodefield {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
-	font-weight: bolder'
+	font-weight: bolder
 }
 
 .tiny-error {
