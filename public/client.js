@@ -142,6 +142,13 @@ class TinyClient {
 		});
 	}
 
+	fixURL(urls) {
+		if (!(urls.startsWith("http://") || urls.startsWith("https://"))) {
+			urls = "https://" + urls;
+		}
+		return urls;
+	}
+
 	decodeAndOpenUrl() {
 		let encoded = this.decodeField.value;
 		let res = this.validateShortUrl(encoded);
@@ -156,7 +163,8 @@ class TinyClient {
 		})
 		.then(url => {
 			this.encodeField.value = url;
-			tinyWindow.location = url;
+			const loc = this.fixURL(url);
+			tinyWindow.location = loc;
 		});
 
 	}
