@@ -14,14 +14,14 @@ const DIGITS_OPTIMIZED = [
 const DIGITS = DIGITS_OPTIMIZED;
 const DIGITS_LEN = DIGITS.length;
 
-//make a char --> value lookup table
+// make a char --> value lookup table
 const DIGITS_REV = DIGITS.reduce((t, v, idx) => { t[v] = idx; return t; }, {});
 
 const TIMEOUT = 3 * 60 * 60 * 1000; // 3 hours
 const GC_PERIOD = 3 * 60 * 1000; // 3 minutes
-//testing
-//const TIMEOUT = 30 * 1000; // 30 seconds
-//const GC_PERIOD = 5 * 1000; // 5 seconds
+// testing
+// const TIMEOUT = 30 * 1000; // 30 seconds
+// const GC_PERIOD = 5 * 1000; // 5 seconds
 
 function getTime() {
 	return new Date().getTime();
@@ -45,20 +45,18 @@ class Tiny {
 	}
 
 	gc() {
-		let table = this.table;
-		//done this way because table is sparse.
-		let keys = Object.keys(table);
-		let now = getTime();
+		const now = getTime();
 		let nrDeleted = 0;
-		for (let key of keys) {
-			let rec = table[key];
-			//console.log("timeout: " + rec.timeout + "  now: " + now);
-			if (rec.timeout < now) {
-				delete table[key];
-				nrDeleted++;
-			}
+		function doTable(table) {
+			Object.entries(this.table).forEach(([k, v]) => {
+				if (v.timeout < now) {
+					delete table[k];
+					nrDeleted++;
+				}
+			});	
 		}
-		console.log("Keys freed: " + nrDeleted);
+		doTable(this.table);
+		console.log(`Keys freed: ${nrDeleted}`);
 	}
 
 	gcStart() {
@@ -76,9 +74,8 @@ class Tiny {
 
 	encode(nr) {
 		let code = "";
-		let size = DIGITS.length;
 		do {
-			let n = nr % DIGITS_LEN;
+			const n = nr % DIGITS_LEN;
 			code = DIGITS[n] + code; //prepend
 			nr = (nr / DIGITS_LEN) | 0;
 		} while (nr > 0);
@@ -87,21 +84,20 @@ class Tiny {
 
 	decode(str) {
 		str = str.toLowerCase();
-		let len = str.length;
 		let val = 0;
-		for (let i = 0; i < len ; i++) {
-			let c = str.charAt(i);
+		for (let i = 0, len = str.length; i < len ; i++) {
+			const c = str.charAt(i);
 			if (c < "a" || c > "z") {
 				return -1;
 			}
-			let v = DIGITS_REV[c];
+			const v = DIGITS_REV[c];
 			val = val * 26 + v;
 		}
 		return val;
 	}
 
 	findKey() {
-		let table = this.table;
+		const table = this.table;
 		//search ordinally in spite of being sparse
 		for (let i = 0; i < 10000000 ; i++) {
 			if (!table[i]) {
@@ -112,67 +108,65 @@ class Tiny {
 	}
 
 	create(url) {
-		//check cache first
+		// check cache first
 		if (url === this.lastUrl) {
 			return this.lastShort;
 		}
-		let table = this.table;
+		const table = this.table;
 
 		/**
 		 * First see if the url is already shortened.  If
 		 * so, simply update it and return the existing short code.
 		 */
-		let keys = Object.keys(table);
-		for (let key of keys) {
-			let rec = table[key];
-			if (rec.url === url) {
-				rec.timeout = getTime() + TIMEOUT;
-				let encoded = this.encode(key);
+		Object.entries(table).forEach(([k, v]) => {
+			if (v.url === url) {
+				v.timeout = getTime() + TIMEOUT;
+				const encoded = this.encode(k);
 				//update cache
 				this.lastUrl = url;
 				this.lastShort = encoded;
 				return encoded;
 			}
-		}
+		});
 
 		/**
 		 * Otherwise find the lowest key in the table, and make
 		 * a new record.
 		 */
-		let index = this.findKey();
+		const index = this.findKey();
 		if (index !== null) {
-			let encoded = this.encode(index);
+			const encoded = this.encode(index);
 			table[index] = {
 				timeout: getTime() + TIMEOUT,
 				url: url
 			};
-			//update cache
+			// update cache
 			this.lastUrl = url;
 			this.lastShort = encoded;
 			return encoded;
 		} else {
-			//what?
+			// what?
 		}
 	}
 
 	fetch(shortUrl) {
-		let table = this.table;
-		let index = this.decode(shortUrl);
-		let res = table[index] || { url: null };
-		let url = res.url;
+		const table = this.table;
+		const index = this.decode(shortUrl);
+		const res = table[index] || { url: null };
+		const url = res.url;
 		return url;
 	}
 
 	handleGet(req, res) {
-		let shortUrl = req.params.url;
-		let fullUrl = this.fetch(shortUrl);
+		const shortUrl = req.params.url;
+		const fullUrl = this.fetch(shortUrl);
 		res.type("text/plain");
 		res.send(fullUrl);	
 	}
 
 	handlePost(req, res) {
-		let url = req.body.url;
-		let shortUrl = this.create(url);
+		const url = req.body.url;
+		const shortUrl = this.create(url);
 		res.type("text/plain");
 		res.send(shortUrl);	
 	}
