@@ -1,7 +1,7 @@
 {
-  "name": "cwtiny",
-  "version": "1.0.0",
-  "description": "A URL shortener designed for the needs of the CW operator",
+  "name": "ctiny",
+  "version": "1.5.0",
+  "description": "A URL shortener designed for the needs of manual communications",
   "main": "server.js",
   "scripts": {
     "test": "mocha --reporter spec test/"
