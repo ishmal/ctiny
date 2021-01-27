@@ -1,4 +1,4 @@
-# cwtiny
+# ctiny
 URL shortener for people.
 
 This was originally designed for Morse code, but it helps with all URLs that need
