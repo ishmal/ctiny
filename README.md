@@ -1,14 +1,18 @@
 # cwtiny
-URL shortener designed for the needs of the CW operator
+URL shortener for people.
 
-During the course of a ham radio Morse conversation, the participants
+This was originally designed for Morse code, but it helps with all URLs that need
+to be shared by human channels.  You can shorten the URL here and pass it to another
+person with a variety of means:   voice,  a piece of paper. etc.
+
+During the course of a conversation, the participants
 might wish to exchange URL's to web sites. Sending
-"http://" is painful on CW, so an alternate way seems like a good idea.
+"http://" is painful to communicate, so an alternate way seems like a good idea.
 
 Here is the good idea: shorten the URL to something that is easy to send.
 Only letters, case insensitive, and as few as possible.
 Make the short URL's short-lived, so that the nicer shorter
-codes become available again. And since CW is manual, keep
+codes become available again. And keep
 the user's necessary actions to a minimum.
 
 To make a CTiny URL, paste the real URL into the upper field
